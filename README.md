@@ -29,13 +29,13 @@ const KeyMap = {
 </RootComponent>
 ```
 
-You can then manage shortcut bindings within your components. This is managed through using the `withKeymaps` wrapper function.
+You can then manage key mappings within your components through the `withKeymaps` wrapper function.
 
 ```
 import React, { Component } from 'react';
 
 class MyComponent extends Component {
-  shortcuts: {
+  keymaps: {
     firstAction: this.handleFirstAction.bind(this),
     secondAction: this.handleSecondAction.bind(this),
     thirdAction: this.handleThirdAction.bind(this)

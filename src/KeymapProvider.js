@@ -9,7 +9,7 @@ export class KeymapProvider extends Component {
   _listeners: Object = {};
 
   static childContextTypes = {
-    subscribeToShortcuts: PropTypes.func.isRequired,
+    subscribeKeymap: PropTypes.func.isRequired,
   };
 
   props: {
@@ -37,7 +37,7 @@ export class KeymapProvider extends Component {
 
   getChildContext(): Object {
     return {
-      subscribeToShortcuts: this.subscribe.bind(this),
+      subscribeKeymap: this.subscribe,
     };
   }
 
@@ -49,7 +49,7 @@ export class KeymapProvider extends Component {
     this.getListeners(eventName).forEach(listener => listener(eventName));
   }
 
-  subscribe(eventName: string, listener: () => void) {
+  subscribe = (eventName: string, listener: () => void) => {
     if (typeof listener !== 'function') {
       console.warn(`Listener for ${eventName} is not a function`);
     }

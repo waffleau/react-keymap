@@ -6,21 +6,21 @@ import PropTypes from 'prop-types';
 export function withKeymaps(WrappedComponent: any) {
   return class extends Component {
     static contextTypes = {
-      subscribeToShortcuts: PropTypes.func.isRequired,
+      subscribeKeymap: PropTypes.func.isRequired,
     };
 
-    bindShortcuts = (node: any) => {
-      const { subscribeToShortcuts } = this.context;
-      const handlers = node.shortcuts;
+    bindKeymaps = (node: any) => {
+      const { subscribeKeymap } = this.context;
+      const handlers = node.keymaps;
       const eventNames = Object.keys(handlers);
 
       eventNames.forEach(eventName => {
-        subscribeToShortcuts(eventName, handlers[eventName]);
+        subscribeKeymap(eventName, handlers[eventName]);
       });
     };
 
     render() {
-      return <WrappedComponent ref={this.bindShortcuts} {...this.props} />;
+      return <WrappedComponent ref={this.bindKeymaps} {...this.props} />;
     }
   };
 }
