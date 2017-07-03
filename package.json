@@ -1,6 +1,6 @@
 {
   "name": "react-keymap",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Keymapping for React using Mousetrap",
   "main": "dist/react-keymap.js",
   "scripts": {
