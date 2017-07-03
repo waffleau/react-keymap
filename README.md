@@ -18,13 +18,14 @@ First, you need to set up the provider at the top level of your component hierar
 ```
 const KeyMap = {
   'firstAction': 'ctrl+m',
-  'secondAction': ['ctrl+k', 'command+k'],
-  'thirdAction': ['a']
+  'second.action': ['ctrl+k', 'command+k'],
+  'thirdAction': ['a'],
+  fourthAction: 'alt+m'
 }
 
 <RootComponent>
   <KeymapProvider mappings={KeyMap}>
-    <!-- render children here -->
+    <!-- Children -->
   </KeymapProvider>
 </RootComponent>
 ```
@@ -35,10 +36,20 @@ You can then manage key mappings within your components through the `withKeymaps
 import React, { Component } from 'react';
 
 class MyComponent extends Component {
-  keymaps: {
-    firstAction: this.handleFirstAction.bind(this),
-    secondAction: this.handleSecondAction.bind(this),
-    thirdAction: this.handleThirdAction.bind(this)
+  keymaps = {
+    firstAction: () => this.handleFirstAction(),
+    'second.action': () => this.handleSecondAction(),
+    fourthAction: this.handleFourthAction.bind(this)
+  }
+
+  // -- OR --
+
+  getKeymaps() {
+    return {
+      firstAction: () => this.handleFirstAction(),
+      'second.action': () => this.handleSecondAction(),
+      fourthAction: this.handleFourthAction.bind(this)
+    }
   }
 
   handleFirstAction() {
@@ -49,7 +60,7 @@ class MyComponent extends Component {
     ...
   }
 
-  handleThirdAction() {
+  handleFourthAction() {
     ...
   }
 
@@ -66,3 +77,11 @@ export default withKeymaps(MyComponent)
 You don't have to subscribe to every action you define, just the ones you care about in the particular component.
 
 For information about key bindinsgs, view [The Mousetrap documentation](https://craig.is/killing/mice).
+
+
+### Example
+
+```
+yarn run example
+open http://localhost:8080/example
+```

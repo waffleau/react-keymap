@@ -10,6 +10,7 @@ export class KeymapProvider extends Component {
 
   static childContextTypes = {
     subscribeKeymap: PropTypes.func.isRequired,
+    unsubscribeKeymap: PropTypes.func.isRequired,
   };
 
   props: {
@@ -38,6 +39,7 @@ export class KeymapProvider extends Component {
   getChildContext(): Object {
     return {
       subscribeKeymap: this.subscribe,
+      unsubscribeKeymap: this.unsubscribe,
     };
   }
 
@@ -55,6 +57,10 @@ export class KeymapProvider extends Component {
     }
 
     this._listeners[eventName] = [...this.getListeners(eventName), listener];
+  }
+
+  unsubscribe = (eventName: string, listener: () => void) => {
+    this._listeners[eventName] = this.getListeners(eventName).filter(l => l !== listener);
   }
 
   render() {

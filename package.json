@@ -1,13 +1,14 @@
 {
   "name": "react-keymap",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Keymapping for React using Mousetrap",
   "main": "dist/react-keymap.js",
   "scripts": {
-    "build": "NODE_ENV=production webpack --config webpack.js",
+    "build": "NODE_ENV=production webpack --config webpack.build.js",
     "clean": "rimraf dist",
+    "example": "webpack-dev-server --config webpack.example.js --colors --hot --progress",
     "lint": "eslint src",
-    "prepublish": "npm run test && npm run clean && npm run build",
+    "prepare": "npm run test && npm run clean && npm run build",
     "test": "jest"
   },
   "keywords": [
