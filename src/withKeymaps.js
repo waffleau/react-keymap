@@ -11,17 +11,27 @@ export function withKeymaps(WrappedComponent: any) {
 
     bindKeymaps = (node: any) => {
       const { subscribeKeymap } = this.context;
-      const keymaps = node.keymaps;
+      let keymaps = node.keymaps
 
-      if (keymaps) {
-        const eventNames = Object.keys(keymaps);
-
-        eventNames.forEach(eventName => {
-          subscribeKeymap(eventName, keymaps[eventName]);
-        });
-      } else {
-        console.warn(`Attempted to wrap component ${WrappedComponent.name} using withKeymaps, but it doesn't define any keymaps`)
+      if (!keymaps && !node.getKeymaps) {
+        console.warn(`Component ${WrappedComponent.name} does not define getKeymaps method`)
+        return
       }
+
+      if (!keymaps) {
+        keymaps = node.getKeymaps();
+      }
+
+      if (!keymaps) {
+        console.warn(`Attempted to wrap component ${WrappedComponent.name} using withKeymaps, but it doesn't define any keymaps`)
+        return
+      }
+
+      const eventNames = Object.keys(keymaps);
+
+      eventNames.forEach(eventName => {
+        subscribeKeymap(eventName, keymaps[eventName]);
+      });
     };
 
     render() {
