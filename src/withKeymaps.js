@@ -20,7 +20,7 @@ export function withKeymaps(WrappedComponent: any) {
           subscribeKeymap(eventName, keymaps[eventName]);
         });
       } else {
-        console.warn(`Attempted to wrap Component ${node.displayName} using withKeymaps, but it doesn't define any keymaps`)
+        console.warn(`Attempted to wrap Component ${node.name} using withKeymaps, but it doesn't define any keymaps`)
       }
     };
 
