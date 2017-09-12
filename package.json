@@ -1,6 +1,6 @@
 {
   "name": "react-keymap",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "Keymapping for React using Mousetrap",
   "main": "dist/react-keymap.js",
   "scripts": {
@@ -11,12 +11,7 @@
     "prepare": "npm run test && npm run clean && npm run build",
     "test": "jest"
   },
-  "keywords": [
-    "react",
-    "hotkey",
-    "keymap",
-    "shortcut"
-  ],
+  "keywords": ["react", "hotkey", "keymap", "shortcut"],
   "repository": {
     "type": "git",
     "url": "https://github.com/waffleau/react-keymap.git"
@@ -51,7 +46,7 @@
     "webpack-dev-server": "^2.5.0"
   },
   "peerDependencies": {
-    "react": "^15.6.1"
+    "react": "^15.0.0 || ^16.0.0"
   },
   "dependencies": {
     "mousetrap": "^1.6.1"
